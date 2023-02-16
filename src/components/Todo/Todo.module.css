@@ -1,0 +1,27 @@
+.todoItem {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #000;
+    border-bottom: 1px solid #797575;
+}
+
+.todoItemContent {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.btnClose {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#checkbox {
+    border-radius: 50%;
+    cursor: pointer;
+  }

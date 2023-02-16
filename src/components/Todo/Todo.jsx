@@ -1,10 +1,12 @@
 import React, {useState} from "react";
-import '../App.css';
+import styles from './Todo.module.css'
 
-function Todo({handleToggle, removeTask, todo}) {
+function Todo({handleToggle, removeTask, todo, todoArr, handleTodo}) {
     const [text, setText] = useState(todo.task);
     const [edited, setEdited] = useState(false);
     const [inputData, setInputData] = useState('');
+
+    const [updatedArr, setUpdatedArr] = useState(todoArr)
 
     const toggleEdit = () => {
         setEdited(true);
@@ -13,7 +15,7 @@ function Todo({handleToggle, removeTask, todo}) {
     const toggleKeyDown = (e) => {
         if(e.keyCode === 13) {
             setEdited(false);
-            setText(e.target.value)
+            handleTodo(todo.id, text)
         }
     }
 
@@ -22,14 +24,14 @@ function Todo({handleToggle, removeTask, todo}) {
     }
 
     return (
-        <div className="todoItem" key={todo.id} >
+        <div className={styles.todoItem} key={todo.id} >
             <div onChange={() => handleToggle(todo.id)}
-                className="checkbox"
+                className={styles.checkbox}
                 >
-                <input type="checkbox" onChange={() => hanleChange}  checked={todo.complete} name="checkbox" id="checkbox" />
+                <input type="checkbox" onChange={() => hanleChange}  checked={todo.complete} name="checkbox" id={styles.checkbox} />
             </div>
             <div
-                className= {todo.complete ? ' todoItemContent rejected' : 'todoItemContent active'}
+                className= {todo.complete ? `${styles.todoItemContent} rejected` : `${styles.todoItemContent} active`}
             >
                 
                 <div 
@@ -40,17 +42,18 @@ function Todo({handleToggle, removeTask, todo}) {
                             placeholder="wtite your task"
                             type='text'
                             onKeyDown={toggleKeyDown}
+                            value={text}
+                            onChange={(e) => setText(e.target.value)}
                         />
                         : 
-                        text
+                        todo.task
                 }
                 </div>
                 
             </div>
-            <button className="btnClose" onClick={() => removeTask(todo.id)}>x</button>
+            <button className={styles.btnClose} onClick={() => removeTask(todo.id)}>x</button>
         </div>
     )
-
 }
 
 export default Todo;

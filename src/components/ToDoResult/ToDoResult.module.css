@@ -1,0 +1,35 @@
+.footer {
+    margin-top: 20px;
+}
+
+.footer .footer_content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px;
+}
+
+.footer .footer_content * {
+    margin-left: 15px;
+}
+.footer .footer_content span {
+    margin-left: 0px;
+}
+
+.footer .footer_content span,
+.footer .footer_content button {
+    font-size: 10px;
+    color: #7c8383;
+}
+
+.footer button {
+    background-color: transparent;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+    padding: 3px;
+}
+
+.footer button:focus {
+    outline: 1px solid #706e6e;
+}

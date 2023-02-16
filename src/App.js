@@ -1,8 +1,8 @@
 import './App.css';
 import { useEffect, useState, useMemo } from 'react';
-import Todo from './components/Todo';
-import TodoForm from './components/TodoForm';
-import TodoResult from './components/TodoResult';
+import Todo from './components/Todo/Todo';
+import TodoForm from './components/TodoForm/TodoForm';
+import TodoResult from './components/ToDoResult/TodoResult';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -43,6 +43,10 @@ function App() {
     setTodos([...todos.map((todo) =>
       todo.id === id ? { ...todo, complete: !todo.complete } : todo
     )]);
+  };
+
+  const handleText =(id, task) => {
+    setTodos([...todos.map((todo) =>  todo.id === id ? {...todo,task} : todo)])
   }
 
   const activeBtn = () => {
@@ -60,7 +64,7 @@ function App() {
   const clearCompleted = () => {
     setTodos(todos.filter((todo) => !todo.complete));
     console.log('deleted arr', filteredTodos);
-  } // ask
+  }
 
   return (
     <div className='wrapper'>
@@ -77,17 +81,21 @@ function App() {
                 todo={todo}
                 handleToggle={handleToggle}
                 removeTask={removeTask}
+                todoArr={filteredTodos}
+                handleTodo={handleText}
               />
             )
           })}
         </div>
-        <TodoResult 
-            length={filteredTodos.length}  
-            all={allBtn}
-            active={activeBtn}
-            completed={completedBtn}
-            clearCompleted={clearCompleted}
-        />
+        <div className='todo_result'>
+          <TodoResult 
+              length={filteredTodos.length}  
+              all={allBtn}
+              active={activeBtn}
+              completed={completedBtn}
+              clearCompleted={clearCompleted}
+          />
+        </div>
       </div>
     </div>
   );

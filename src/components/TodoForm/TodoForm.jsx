@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import styles from './TodoForm.module.css';
 
 function TodoForm({addTask}) {
     const [enterInput, setEnterInput] = useState('');
@@ -19,8 +20,9 @@ function TodoForm({addTask}) {
                 placeholder="enter your todo"
                 value={enterInput}
                 onChange={handleChange}
-                type="text" />
-            {/* <button>add</button> */}
+                type="text"
+                className={styles.search_bar}
+            />
         </form>
     )
 }
